@@ -11,6 +11,30 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigUpdater", "ConfigUpda
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Fortnite time Blocker", "Fortnite time Blocker\Fortnite time Blocker.vdproj", "{071E3664-AA14-4DC0-A377-BD54AE96E30F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bin", "Bin", "{EFEAED62-F528-4C49-89E3-215727BAB97A}"
+	ProjectSection(SolutionItems) = preProject
+		Bin\ConfigUpdater.exe = Bin\ConfigUpdater.exe
+		Bin\ConfigUpdater.exe.config = Bin\ConfigUpdater.exe.config
+		Bin\edit.ico = Bin\edit.ico
+		Bin\Install\Fortnite time Blocker.msi = Bin\Install\Fortnite time Blocker.msi
+		Bin\gear_delete.ico = Bin\gear_delete.ico
+		Bin\image.jpg = Bin\image.jpg
+		Bin\install.bat = Bin\install.bat
+		Bin\msg.html = Bin\msg.html
+		Bin\Newtonsoft.Json.dll = Bin\Newtonsoft.Json.dll
+		Bin\NotificationMessage.exe = Bin\NotificationMessage.exe
+		Bin\NotificationMessage.exe.config = Bin\NotificationMessage.exe.config
+		Bin\un-install.bat = Bin\un-install.bat
+		Bin\Windows.Update.Service.exe = Bin\Windows.Update.Service.exe
+		Bin\Windows.Update.Service.exe.config = Bin\Windows.Update.Service.exe.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Install", "Install", "{B4C9EEEF-85BD-4961-982E-CE13D2D1EE60}"
+	ProjectSection(SolutionItems) = preProject
+		Bin\Install\Fortnite time Blocker.msi = Bin\Install\Fortnite time Blocker.msi
+		Bin\Install\setup.exe = Bin\Install\setup.exe
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +66,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B4C9EEEF-85BD-4961-982E-CE13D2D1EE60} = {EFEAED62-F528-4C49-89E3-215727BAB97A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97E21717-1170-4309-9298-FE2929F7CABA}

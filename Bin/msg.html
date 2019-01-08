@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        html{
+            width:100%;
+            height:100%;
+        }
+        body{
+            width:100%;
+            height:100%;
+            background-color:white;
+        }
+        pre{
+            text-align: center;
+            font-size: 30px;
+        }
+        div{
+           align-content: center; 
+        }
+        .div-img{
+            text-align: right; 
+        }
+        </style>
+</head>
+<body>
+    <div class="div-img">
+            <img src="image.jpg" alt="">
+    </div>
+    
+    <div>        
+    <pre dir="rtl">
+            תלמיד יקר,
+            זו היא הודעה ממשרד החינוך !
+            אתה מול מסך המחשב קרוב ל-3 שעות, זה זמן רב מאד.
+            משחק המחשב יסתיים בעוד 5 דקות.
+                    
+            תודה,
+            נפתלי בנט - שר החינוך.
+    </pre>
+    </div>
+</body>
+<script type="text/javascript">
+
+var myWindow;
+
+function openWin() {
+    var x = screen.width;
+    var y = screen.height;
+
+    myWindow = window.open(document.location.href, "mywindow", "width="+x+",height="+y+",fullscreen=yes");
+    myWindow.moveTo(0, 0);
+
+}
+
+
+function maxWindow() {
+    //openWin();
+    var width = screen.width;
+    var height = screen.height;
+
+        window.moveTo(0, 0);
+       // if (document.all) {
+            alert(1);
+            window.resizeTo(width, height);
+            alert(2);
+        //}
+
+        // else if (document.layers || document.getElementById) {
+        //     if (top.window.outerHeight < screen.availHeight || top.window.outerWidth < screen.availWidth) {
+        //         top.window.outerHeight = screen.availHeight;
+        //         top.window.outerWidth = screen.availWidth;
+        //     }
+        // }
+    }
+
+</script>
+</html>
