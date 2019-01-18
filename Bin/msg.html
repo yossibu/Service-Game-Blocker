@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,77 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <style>
-        html{
-            width:100%;
-            height:100%;
+        html {
+            width: 100%;
+            height: 100%;
         }
-        body{
-            width:100%;
-            height:100%;
-            background-color:white;
+
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: white;
         }
-        pre{
+
+        pre {
             text-align: center;
             font-size: 30px;
         }
-        div{
-           align-content: center; 
+
+        div {
+            align-content: center;
         }
-        .div-img{
-            text-align: right; 
+
+        .div-img {
+            text-align: right;
         }
-        </style>
+    </style>
 </head>
-<body>
+<body onload="onLoad()">
     <div class="div-img">
-            <img src="image.jpg" alt="">
+        <img src="image.jpg" alt="">
     </div>
-    
-    <div>        
-    <pre dir="rtl">
+
+    <div>
+        <pre dir="rtl" id="msg">
             תלמיד יקר,
             זו היא הודעה ממשרד החינוך !
-            אתה מול מסך המחשב קרוב ל-3 שעות, זה זמן רב מאד.
+            אתה מול מסך המחשב קרוב ל-TT שעות, זה זמן רב מאד.
             משחק המחשב יסתיים בעוד 5 דקות.
                     
             תודה,
             נפתלי בנט - שר החינוך.
     </pre>
     </div>
+
+    <script type="text/javascript">
+
+        function onLoad() {
+            var totalTime = getParameterByName("totaltime", window.location.search);
+            var msg = document.getElementById("msg").textContent;
+            msg = msg.replace("TT", totalTime);
+            document.getElementById("msg").textContent = msg;
+        }
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+    </script>
 </body>
-<script type="text/javascript">
-
-var myWindow;
-
-function openWin() {
-    var x = screen.width;
-    var y = screen.height;
-
-    myWindow = window.open(document.location.href, "mywindow", "width="+x+",height="+y+",fullscreen=yes");
-    myWindow.moveTo(0, 0);
-
-}
-
-
-function maxWindow() {
-    //openWin();
-    var width = screen.width;
-    var height = screen.height;
-
-        window.moveTo(0, 0);
-       // if (document.all) {
-            alert(1);
-            window.resizeTo(width, height);
-            alert(2);
-        //}
-
-        // else if (document.layers || document.getElementById) {
-        //     if (top.window.outerHeight < screen.availHeight || top.window.outerWidth < screen.availWidth) {
-        //         top.window.outerHeight = screen.availHeight;
-        //         top.window.outerWidth = screen.availWidth;
-        //     }
-        // }
-    }
-
-</script>
 </html>

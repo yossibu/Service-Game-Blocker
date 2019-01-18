@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Configuration;
+using System.ServiceProcess;
 using System.Text;
 using System.Windows;
 
@@ -79,7 +80,19 @@ namespace ConfigUpdater
                 IsDirty = true;
             }
         }
-
+        private string _serviceStatus = "";
+        public string ServiceStatus
+        {
+            get
+            {
+                return _serviceStatus;
+            }
+            set
+            {
+                _serviceStatus = string.Format("Service Status: {0}", value);
+                NotifyPropertyChanged("ServiceStatus");
+            }
+        }
         public bool SendMail
         {
             get { return ConfigSettings.Settings["SendMail"].Value.Equals(Boolean.TrueString,StringComparison.OrdinalIgnoreCase); }
@@ -93,6 +106,7 @@ namespace ConfigUpdater
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            GetServiceStatus();
             IsDirty = false;
         }
         public bool IsDirty
@@ -181,6 +195,63 @@ namespace ConfigUpdater
             if (string.IsNullOrEmpty(value))
                 return string.Empty;
             return Convert.ToBase64String(Encoding.ASCII.GetBytes(value));
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {            
+            ServiceCtrl.Stop();
+            ServiceCtrl.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromMilliseconds(5000));
+            GetServiceStatus();
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            ServiceCtrl.Start();
+            ServiceCtrl.WaitForStatus(ServiceControllerStatus.Running ,TimeSpan.FromMilliseconds(5000));
+            GetServiceStatus();
+        }
+
+        private ServiceController _sc = null;
+        private ServiceController ServiceCtrl
+        {
+            get
+            {
+                if (_sc == null)
+                {
+                    _sc = new ServiceController("WindowsGameBlocker",Environment.MachineName);
+                }
+                return _sc;
+            }
+        }
+        public void GetServiceStatus()
+        {            
+            btnStart.IsEnabled = false;
+            btnStop.IsEnabled = false;
+            switch (ServiceCtrl.Status)
+            {
+                case ServiceControllerStatus.Running:
+                    btnStop.IsEnabled = true;
+                    ServiceStatus = "Running";
+                    break;
+                case ServiceControllerStatus.Stopped:
+                    btnStart.IsEnabled = true;
+                    ServiceStatus = "Stopped";
+                    break;
+                case ServiceControllerStatus.Paused:
+                    btnStart.IsEnabled = true;
+                    btnStop.IsEnabled = true;
+                    ServiceStatus = "Paused";
+                    break;
+                case ServiceControllerStatus.StopPending:
+                    ServiceStatus = "Stopping";
+                    break;
+                case ServiceControllerStatus.StartPending:
+                    ServiceStatus = "Starting";
+                    break;
+                default:
+                    ServiceStatus = "Status Changing";
+                    break;
+            }
         }
     }
 }

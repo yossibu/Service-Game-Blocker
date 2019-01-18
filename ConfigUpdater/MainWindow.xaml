@@ -19,6 +19,8 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
@@ -57,7 +59,12 @@
         <Label Margin="5,0,0,0" Grid.Row="8" Grid.Column="0" Name="lblSendMail" Content="Send Mail:" HorizontalAlignment="Left" VerticalContentAlignment="Center"></Label>
         <CheckBox Margin="2,3,5,3" Grid.Row="8" Grid.Column="1" IsChecked="{Binding SendMail}"  Name="chkSendMail" ></CheckBox>
 
-        <Border Grid.Row="10" Grid.ColumnSpan="2"
+        <Button HorizontalAlignment="Left" Name="btnStop"  Click="btnStop_Click" Margin="20,0,0,0" Grid.Row="10" Width="50" Grid.ColumnSpan="2" Grid.Column="0" Content="Stop"></Button>
+        <Button HorizontalAlignment="Left" Name="btnStart" Click="btnStart_Click" Margin="80,0,0,0" Grid.Row="10" Width="50" Grid.ColumnSpan="2" Grid.Column="0" Content="Start"></Button>
+        <Label Margin="130,0,0,0" Grid.Row="10" Grid.Column="0" Name="lblServiceStatus" Content="{Binding ServiceStatus}"  HorizontalAlignment="Left" VerticalContentAlignment="Center"></Label>
+
+
+        <Border Grid.Row="12" Grid.ColumnSpan="2"
             Background="LightGray"
             Padding="0,10,0,0"
             BorderBrush="Silver"
